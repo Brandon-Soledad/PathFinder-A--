@@ -1,19 +1,24 @@
 import pygame
 import sys
 
-SCREEN_WIDTH = 500
-SCREEN_HEIGHT = 500
-WHITE = (255,255,255)
+def createGrid():
+    SCREEN_WIDTH = 500
+    SCREEN_HEIGHT = 500
+    WHITE = (255,255,255)
 
-pygame.init()
-frame = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-pygame.display.set_caption("PathFinder")
-frame.fill(WHITE)
+    pygame.init()
+    frame = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+    pygame.display.set_caption("PathFinder")
+    frame.fill(WHITE)
 
-gameExit = False
+    gameExit = False
 
-while not gameExit:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            gameExit = True
-    
+    while not gameExit:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                gameExit = True
+
+def main():
+    createGrid()
+if __name__ == '__main__':
+    main()    
