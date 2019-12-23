@@ -17,8 +17,6 @@ def createGrid():
                 rect = pygame.Rect(x*BLOCK_SIZE, y*BLOCK_SIZE, BLOCK_SIZE - 1, BLOCK_SIZE - 1)
                 pygame.draw.rect(frame, (0,250,0), rect)
 
-    gameExit = False
-
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
