@@ -1,10 +1,10 @@
 import pygame
 import sys
-from Queue import PriorityQueue
+from queue import PriorityQueue
 
 def createGrid():
-    SCREEN_WIDTH = 500
-    SCREEN_HEIGHT = 500
+    SCREEN_WIDTH = 800
+    SCREEN_HEIGHT = 700
     WHITE = (255,255,255)
 
     pygame.init()
@@ -74,7 +74,7 @@ class AStar:
         startState = State_String(self.start, 0, self.start, self.goal)
         count = 0
         self.priorityQueue.put((0, count, startState))
-        while(not self.path and self.priorityQueue.qsize():
+        while(not self.path and self.priorityQueue.qsize()):
             closestChild = self.priorityQueue.get()[2]
             closestChild.CreateChildren()
             self.VisitedQueue.append(closestChild.value)
