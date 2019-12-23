@@ -13,10 +13,12 @@ def createGrid():
 
     gameExit = False
 
-    while not gameExit:
+    while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                gameExit = True
+                pygame.quit()
+                sys.exit()
+        pygame.display.update()
 
 def main():
     createGrid()
