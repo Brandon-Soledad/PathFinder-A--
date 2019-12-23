@@ -71,7 +71,7 @@ class AStar:
         self.priorityQueue = PriorityQueue()
         self.start = start
     def Solve(self):
-        startState = State_String(self.start, 0, self.start, self.goal, self)
+        startState = State_String(self.start, 0, self.start, self.goal)
         count = 0
         self.priorityQueue.put((0, count, startState))
         while(not self.path and self.priorityQueue.qsize():
