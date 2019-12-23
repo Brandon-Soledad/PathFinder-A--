@@ -4,13 +4,18 @@ from queue import PriorityQueue
 
 def createGrid():
     SCREEN_WIDTH = 800
-    SCREEN_HEIGHT = 700
+    SCREEN_HEIGHT = 800
+    BLOCK_SIZE = 32
     WHITE = (255,255,255)
 
     pygame.init()
     frame = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     pygame.display.set_caption("PathFinder")
     frame.fill(WHITE)
+    for y in range(SCREEN_HEIGHT):
+            for x in range(SCREEN_WIDTH):
+                rect = pygame.Rect(x*BLOCK_SIZE, y*BLOCK_SIZE, BLOCK_SIZE - 1, BLOCK_SIZE - 1)
+                pygame.draw.rect(frame, (0,250,0), rect)
 
     gameExit = False
 
@@ -19,6 +24,7 @@ def createGrid():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
+        
         pygame.display.update()
 
 def main():
