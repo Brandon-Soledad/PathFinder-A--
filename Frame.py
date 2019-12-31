@@ -1,29 +1,55 @@
 import pygame
 import sys
+from pynput.mouse import Button, Controller
 from queue import PriorityQueue
 
-def createGrid():
-    SCREEN_WIDTH = 800
-    SCREEN_HEIGHT = 800
-    BLOCK_SIZE = 32
-    WHITE = (255,255,255)
 
-    pygame.init()
-    frame = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-    pygame.display.set_caption("PathFinder")
+SCREEN_WIDTH = 800
+SCREEN_HEIGHT = 800
+BLOCK_SIZE = 32
+WHITE = (255,255,255)
+
+pygame.init()
+
+frame = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+pygame.display.set_caption("PathFinder")
+
+# create list with all rects
+all_rects = []
+for y in range(0, SCREEN_HEIGHT, BLOCK_SIZE):
+    row = []
+    for x in range(0, SCREEN_WIDTH, BLOCK_SIZE):
+        rect = pygame.Rect(x, y, BLOCK_SIZE-1, BLOCK_SIZE-1)
+        row.append([rect, (0, 255, 0)])            
+    all_rects.append(row)
+
+while True:
+
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            pygame.quit()
+            sys.exit()
+        elif event.type == pygame.MOUSEBUTTONDOWN:
+            # check which rect was clicked and change its color on list
+            for row in all_rects:
+                for item in row:
+                    rect, color = item
+                    if rect.collidepoint(event.pos):
+                        if color == (0, 255, 0):
+                            item[1] = (255, 0, 0)
+                        else:
+                            item[1] = (0, 255, 0)
+
+    # draw all in every loop
+
     frame.fill(WHITE)
-    for y in range(SCREEN_HEIGHT):
-            for x in range(SCREEN_WIDTH):
-                rect = pygame.Rect(x*BLOCK_SIZE, y*BLOCK_SIZE, BLOCK_SIZE - 1, BLOCK_SIZE - 1)
-                pygame.draw.rect(frame, (0,250,0), rect)
 
-    while True:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.quit()
-                sys.exit()
-        
-        pygame.display.update()
+    for row in all_rects:
+        for item in row:
+            rect, color = item
+            pygame.draw.rect(frame, color, rect)
+
+    pygame.display.flip()
 
 def main():
     createGrid()
