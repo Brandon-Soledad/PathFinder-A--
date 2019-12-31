@@ -8,6 +8,8 @@ SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 800
 BLOCK_SIZE = 32
 WHITE = (255,255,255)
+RECT_COLOR = (0,0,15)
+NEW_COLOR = (20,0,200)
 
 pygame.init()
 
@@ -20,7 +22,7 @@ for y in range(0, SCREEN_HEIGHT, BLOCK_SIZE):
     row = []
     for x in range(0, SCREEN_WIDTH, BLOCK_SIZE):
         rect = pygame.Rect(x, y, BLOCK_SIZE-1, BLOCK_SIZE-1)
-        row.append([rect, (0, 255, 0)])            
+        row.append([rect, RECT_COLOR])            
     all_rects.append(row)
 
 while True:
@@ -35,10 +37,10 @@ while True:
                 for item in row:
                     rect, color = item
                     if rect.collidepoint(event.pos):
-                        if color == (0, 255, 0):
-                            item[1] = (255, 0, 0)
+                        if color == RECT_COLOR:
+                            item[1] = NEW_COLOR
                         else:
-                            item[1] = (0, 255, 0)
+                            item[1] = RECT_COLOR
 
     # draw all in every loop
 
